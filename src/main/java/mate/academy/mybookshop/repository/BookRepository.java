@@ -6,5 +6,7 @@ import mate.academy.mybookshop.entity.BookEntity;
 public interface BookRepository {
     BookEntity save(BookEntity book);
 
+    BookEntity getById(Long id);
+
     List<BookEntity> findAll();
 }

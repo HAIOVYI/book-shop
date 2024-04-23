@@ -2,6 +2,7 @@ package mate.academy.mybookshop.repository;
 
 import java.util.List;
 import mate.academy.mybookshop.entity.BookEntity;
+import mate.academy.mybookshop.exception.EntityNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -35,6 +36,15 @@ public class BookRepositoryImpl implements BookRepository {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public BookEntity getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(BookEntity.class, id);
+        } catch (Exception e) {
+            throw new EntityNotFoundException("Can't get book by id: " + id, e);
         }
     }
 
