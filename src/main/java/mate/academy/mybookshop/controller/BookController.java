@@ -24,8 +24,8 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public BookDto getById(@PathVariable Long id) {
-        return bookService.getById(id);
+    public BookDto findById(@PathVariable Long id) {
+        return bookService.findById(id);
     }
 
     @PostMapping

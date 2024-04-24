@@ -7,7 +7,7 @@ import mate.academy.mybookshop.dto.CreateBookRequestDto;
 public interface BookService {
     BookDto save(CreateBookRequestDto bookRequestDto);
 
-    BookDto getById(Long id);
+    BookDto findById(Long id);
 
     List<BookDto> findAll();
 }

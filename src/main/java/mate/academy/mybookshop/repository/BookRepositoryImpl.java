@@ -1,8 +1,8 @@
 package mate.academy.mybookshop.repository;
 
 import java.util.List;
+import java.util.Optional;
 import mate.academy.mybookshop.entity.BookEntity;
-import mate.academy.mybookshop.exception.EntityNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,11 +40,11 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public BookEntity getById(Long id) {
+    public Optional<BookEntity> findById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(BookEntity.class, id);
+            return Optional.ofNullable(session.get(BookEntity.class, id));
         } catch (Exception e) {
-            throw new EntityNotFoundException("Can't get book by id: " + id, e);
+            throw new RuntimeException("Can't get book by id: " + id, e);
         }
     }
 
