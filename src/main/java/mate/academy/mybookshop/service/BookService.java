@@ -10,7 +10,7 @@ public interface BookService {
 
     BookDto findById(Long id);
 
-    List<BookDto> findAll();
+    List<BookDto> findAll(int page, int size, String sortBy, String sortOrder);
 
     BookDto update(Long id, UpdateBookRequestDto bookRequestDto);
 
