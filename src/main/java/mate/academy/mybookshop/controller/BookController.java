@@ -9,6 +9,7 @@ import mate.academy.mybookshop.dto.BookDto;
 import mate.academy.mybookshop.dto.CreateBookRequestDto;
 import mate.academy.mybookshop.dto.UpdateBookRequestDto;
 import mate.academy.mybookshop.service.BookService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,11 +30,8 @@ public class BookController {
 
     @GetMapping
     @Operation(summary = "Get all books", description = "Get a list of all available books")
-    public List<BookDto> findAll(@RequestParam(defaultValue = "0") int page,
-                                 @RequestParam(defaultValue = "10") int size,
-                                 @RequestParam(defaultValue = "id") String sortBy,
-                                 @RequestParam(defaultValue = "asc") String sortOrder) {
-        return bookService.findAll(page, size, sortBy, sortOrder);
+    public List<BookDto> findAll(Pageable pageable) {
+        return bookService.findAll(pageable);
     }
 
     @GetMapping("/{id}")

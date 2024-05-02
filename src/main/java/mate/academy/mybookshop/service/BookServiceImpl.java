@@ -9,9 +9,7 @@ import mate.academy.mybookshop.entity.BookEntity;
 import mate.academy.mybookshop.exception.EntityNotFoundException;
 import mate.academy.mybookshop.mapper.BookMapper;
 import mate.academy.mybookshop.repository.BookRepository;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -35,10 +33,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> findAll(int page, int size, String sortBy, String sortOrder) {
-        Sort sort = Sort.by(sortOrder.equals("asc")
-                ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy);
-        Pageable pageable = PageRequest.of(page, size, sort);
+    public List<BookDto> findAll(Pageable pageable) {
         return bookRepository.findAll(pageable).stream()
                 .map(bookMapper::toDto)
                 .toList();
