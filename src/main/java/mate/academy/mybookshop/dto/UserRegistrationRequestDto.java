@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import mate.academy.mybookshop.annotation.PasswordMatches;
 
-@PasswordMatches(message = "Passwords do not match")
+@PasswordMatches
 @Data
 public class UserRegistrationRequestDto {
     @NotBlank
