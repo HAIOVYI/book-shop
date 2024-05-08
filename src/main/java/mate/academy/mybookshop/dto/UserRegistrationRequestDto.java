@@ -4,13 +4,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import mate.academy.mybookshop.annotation.FieldMatch;
+import mate.academy.mybookshop.annotation.PasswordMatches;
 
-@FieldMatch.List({
-        @FieldMatch(first = "password",
-                second = "confirmPassword",
-                message = "Passwords do not match")
-})
+@PasswordMatches(message = "Passwords do not match")
 @Data
 public class UserRegistrationRequestDto {
     @NotBlank

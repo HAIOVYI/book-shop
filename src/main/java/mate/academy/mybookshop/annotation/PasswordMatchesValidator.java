@@ -1,27 +1,22 @@
 package mate.academy.mybookshop.annotation;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import java.util.Objects;
 import mate.academy.mybookshop.dto.UserRegistrationRequestDto;
-import org.springframework.stereotype.Component;
 
-@Component
-public class PasswordMatchesValidator implements ConstraintValidator<FieldMatch, Object> {
-    private String firstFieldName;
-    private String secondFieldName;
+public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {
 
     @Override
-    public void initialize(FieldMatch constraintAnnotation) {
-        firstFieldName = constraintAnnotation.first();
-        secondFieldName = constraintAnnotation.second();
+    public void initialize(PasswordMatches constraintAnnotation) {
+        //ignored
     }
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        UserRegistrationRequestDto userDto = (UserRegistrationRequestDto) value;
-        String password = userDto.getPassword();
-        String confirmPassword = userDto.getConfirmPassword();
-
-        return password != null && password.equals(confirmPassword);
+        if (value instanceof UserRegistrationRequestDto userDto) {
+            return Objects.equals(userDto.getPassword(), userDto.getConfirmPassword());
+        }
+        return false;
     }
 }
