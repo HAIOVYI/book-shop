@@ -7,6 +7,7 @@ import mate.academy.mybookshop.entity.UserEntity;
 import mate.academy.mybookshop.exception.RegistrationException;
 import mate.academy.mybookshop.mapper.UserMapper;
 import mate.academy.mybookshop.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserResponseDto registerUser(UserRegistrationRequestDto request)
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
         }
 
         UserEntity user = userMapper.toEntity(request);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         UserEntity savedUser = userRepository.save(user);
         return userMapper.toResponseDto(savedUser);
     }
