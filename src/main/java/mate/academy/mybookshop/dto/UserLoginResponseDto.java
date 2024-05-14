@@ -1,2 +1,8 @@
-package mate.academy.mybookshop.dto;public class UserLoginResponseDto {
+package mate.academy.mybookshop.dto;
+
+import lombok.Data;
+
+@Data
+public class UserLoginResponseDto {
+    private String token;
 }
