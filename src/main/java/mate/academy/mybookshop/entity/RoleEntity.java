@@ -30,6 +30,10 @@ public class RoleEntity implements GrantedAuthority {
     @Column(nullable = false)
     private boolean isDeleted = false;
 
+    public RoleEntity(RoleType type) {
+        this.type = type;
+    }
+
     @Override
     public String getAuthority() {
         return "ROLE_" + type.name();
