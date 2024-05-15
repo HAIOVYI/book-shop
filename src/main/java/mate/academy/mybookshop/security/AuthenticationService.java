@@ -2,10 +2,12 @@ package mate.academy.mybookshop.security;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import mate.academy.mybookshop.config.SecurityConfig;
 import mate.academy.mybookshop.dto.UserLoginRequestDto;
 import mate.academy.mybookshop.dto.UserLoginResponseDto;
 import mate.academy.mybookshop.entity.UserEntity;
 import mate.academy.mybookshop.repository.UserRepository;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final UserRepository userRepository;
-    private final TokenUtil tokenUtil;
+    private final JwtUtil jwtUtil;
+    private final SecurityConfig securityConfig;
 
     public UserLoginResponseDto authenticate(UserLoginRequestDto requestDto) {
         Optional<UserEntity> user = userRepository.findByEmail(requestDto.getEmail());
@@ -21,9 +24,10 @@ public class AuthenticationService {
             throw new UsernameNotFoundException("User not found");
         }
         String userPasswordFromDb = user.get().getPassword();
-
-        return tokenUtil.generateToken(requestDto.getEmail());
+        String encodedPassword = securityConfig.passwordEncoder().encode(requestDto.getPassword());
+        if (!userPasswordFromDb.equals(encodedPassword)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+        return new UserLoginResponseDto(jwtUtil.generateToken(requestDto.getEmail()));
     }
-
-
 }
