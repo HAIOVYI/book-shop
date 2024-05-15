@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: admin
+      changes:
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: Harry Potter and the Sorcerer’s Stone
+              - column:
+                  name: author
+                  value: J. K. Rowling
+              - column:
+                  name: isbn
+                  value: 1234567891011
+              - column:
+                  name: price
+                  value: 22.12
+              - column:
+                  name: description
+                  value: Harry Potter series, about a young sorcerer in training
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: Harry Potter and the Chamber of Secrets
+              - column:
+                  name: author
+                  value: J. K. Rowling
+              - column:
+                  name: isbn
+                  value: 1234567891012
+              - column:
+                  name: price
+                  value: 19.12
+              - column:
+                  name: description
+                  value: Harry Potter series, about a young sorcerer in training
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: Daughter of the Pirate King
+              - column:
+                  name: author
+                  value: Tricia Levenseller
+              - column:
+                  name: isbn
+                  value: 1234567891013
+              - column:
+                  name: price
+                  value: 16.12

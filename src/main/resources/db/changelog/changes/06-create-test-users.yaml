@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: admin
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: admin@god.com
+              - column:
+                  name: password
+                  value: $2a$10$T49iZ1kORtzfHBQDCHrvZul6JiWfkbxVKZK31cbS7p7ZVn1d0W5Vm
+              - column:
+                  name: first_name
+                  value: Joe
+              - column:
+                  name: last_name
+                  value: Black
+              - column:
+                  name: shipping_address
+                  value: heaven avenue
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: user@devil.com
+              - column:
+                  name: password
+                  value: $2a$10$T49iZ1kORtzfHBQDCHrvZul6JiWfkbxVKZK31cbS7p7ZVn1d0W5Vm
+              - column:
+                  name: first_name
+                  value: Keanu
+              - column:
+                  name: last_name
+                  value: Reeves
+              - column:
+                  name: shipping_address
+                  value: New York
