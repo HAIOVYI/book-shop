@@ -14,7 +14,6 @@ databaseChangeLog:
               - column:
                   name: role_id
                   type: bigint
-                  defaultValue: 2
                   constraints:
                     nullable: false
         - addPrimaryKey:
