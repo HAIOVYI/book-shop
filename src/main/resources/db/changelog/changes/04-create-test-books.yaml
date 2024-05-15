@@ -2,6 +2,12 @@ databaseChangeLog:
   - changeSet:
       id: 0
       author: admin
+      preConditions:
+        onFail: MARK_RAN
+        not:
+          sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM books WHERE isbn IN ('1234567891011', '1234567891012', '1234567891013')
       changes:
         - insert:
             tableName: books

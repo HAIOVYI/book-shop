@@ -2,6 +2,23 @@ databaseChangeLog:
   - changeSet:
       id: 0
       author: admin
+      preConditions:
+        onFail: MARK_RAN
+        and:
+          - tableExists:
+              tableName: users_roles
+          - sqlCheck:
+              expectedResult: 1
+              sql: SELECT COUNT(*) FROM users WHERE email = 'admin@god.com'
+          - sqlCheck:
+              expectedResult: 1
+              sql: SELECT COUNT(*) FROM users WHERE email = 'user@devil.com'
+          - sqlCheck:
+              expectedResult: 1
+              sql: SELECT COUNT(*) FROM roles WHERE type = 'ADMIN'
+          - sqlCheck:
+              expectedResult: 1
+              sql: SELECT COUNT(*) FROM roles WHERE type = 'USER'
       changes:
         - insert:
             tableName: users_roles

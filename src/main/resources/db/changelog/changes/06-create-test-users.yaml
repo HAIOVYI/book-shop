@@ -2,6 +2,19 @@ databaseChangeLog:
   - changeSet:
       id: 0
       author: admin
+      preConditions:
+        onFail: MARK_RAN
+        and:
+          - tableExists:
+              tableName: users
+          - not:
+              or:
+                - sqlCheck:
+                    expectedResult: 1
+                    sql: SELECT COUNT(*) FROM users WHERE email = 'admin@god.com'
+                - sqlCheck:
+                    expectedResult: 1
+                    sql: SELECT COUNT(*) FROM users WHERE email = 'user@devil.com'
       changes:
         - insert:
             tableName: users

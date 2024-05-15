@@ -2,6 +2,15 @@ databaseChangeLog:
   - changeSet:
       id: 0
       author: admin
+      preConditions:
+        onFail: MARK_RAN
+        and:
+          - tableExists:
+              tableName: users
+          - not:
+              columnExists:
+                tableName: users
+                columnName: is_deleted
       changes:
         - addColumn:
             tableName: users
