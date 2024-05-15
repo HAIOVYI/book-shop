@@ -46,8 +46,6 @@ public class UserEntity implements UserDetails {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     @ManyToMany(fetch = FetchType.EAGER)
-    @EqualsAndHashCode.Exclude
-    @ToStringExclude
     private Set<RoleEntity> roles = new HashSet<>();
     @Column(nullable = false)
     private boolean isDeleted = false;
