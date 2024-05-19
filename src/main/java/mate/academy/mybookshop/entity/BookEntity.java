@@ -55,7 +55,7 @@ public class BookEntity {
     @JoinTable(
             name = "books_categories",
             joinColumns = @JoinColumn(
-                    name = "books_id", referencedColumnName = "id"),
+                    name = "book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "category_id", referencedColumnName = "id"))
     @ManyToMany(fetch = FetchType.LAZY)

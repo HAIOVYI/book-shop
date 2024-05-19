@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: admin
+      preConditions:
+        onFail: MARK_RAN
+        not:
+          - tableExist:
+            tableName: categories
+      changes:
+        - createTable:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Science fiction
+              - column:
+                  name: description
+                  value: |
+                    Science fiction is a genre of speculative fiction, which typically deals with imaginative
+                    and futuristic concepts such as advanced science and technology,
+                    space exploration, time travel, parallel universes, and extraterrestrial life.
+                    It is related to fantasy, horror, and superhero fiction and contains many subgenres.
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Mystery
+              - column:
+                  name: description
+                  value: |
+                    Mystery is a fiction genre where the nature of an event, usually a murder or other crime,
+                    remains mysterious until the end of the story. Often within a closed circle of suspects,
+                    each suspect is usually provided with a credible motive
+                    and a reasonable opportunity for committing the crime.
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: Action & Adventure
+              - column:
+                  name: description
+                  value: |
+                    The Action and Adventure genre takes readers onto heart-pounding journeys filled with excitement,
+                    danger, and heroic quests. These stories often feature courageous protagonists who embark
+                    on epic adventures, facing formidable challenges, adversaries, and the unknown.
+                    Whether it's treasure hunters exploring remote jungles, spies navigating international conspiracies,
+                    or heroes battling mythical beasts, the genre's hallmark is its relentless pace, adrenaline-fueled
+                    sequences, and moments of high-stakes conflict. Action and Adventure novels transport readers
+                    to exotic locales, ancient ruins, and distant galaxies, offering an exhilarating escape into worlds
+                    of daring escapades and unforgettable quests.
