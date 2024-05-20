@@ -63,7 +63,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDtoWithoutCategoryIds> findAllBooksByCategoryId(Long categoryId, Pageable pageable) {
+    public List<BookDtoWithoutCategoryIds> findAllBooksByCategoryId(
+            Long categoryId, Pageable pageable) {
         List<BookEntity> bookEntities = bookRepository.findAllByCategoriesId(categoryId, pageable);
         return bookEntities.stream()
                 .map(bookMapper::toDtoWithoutCategories)
