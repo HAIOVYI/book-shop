@@ -26,7 +26,7 @@ public class ShoppingCartEntity {
     private Long id;
 
     @OneToOne(optional = false)
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
