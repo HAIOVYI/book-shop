@@ -53,6 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     private void checkExistCategoryById(Long id) {
         categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Can't find a category by id " + id));
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Can't find a category by id " + id));
     }
 }
