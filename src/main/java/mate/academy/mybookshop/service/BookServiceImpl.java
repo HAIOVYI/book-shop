@@ -74,13 +74,15 @@ public class BookServiceImpl implements BookService {
 
     private void setCategories(BookEntity bookEntity, Set<Long> categoryIds) {
         if (categoryIds != null && !categoryIds.isEmpty()) {
-            Set<CategoryEntity> categories = new HashSet<>(categoryRepository.findAllById(categoryIds));
+            Set<CategoryEntity> categories =
+                    new HashSet<>(categoryRepository.findAllById(categoryIds));
             Set<Long> foundCategoryIds = categories.stream()
                     .map(CategoryEntity::getId)
                     .collect(Collectors.toSet());
             categoryIds.forEach(categoryId -> {
                 if (!foundCategoryIds.contains(categoryId)) {
-                    throw new EntityNotFoundException("Category with id: " + categoryId + " not found");
+                    throw new EntityNotFoundException(
+                            "Category with id: " + categoryId + " not found");
                 }
             });
             bookEntity.setCategories(categories);
