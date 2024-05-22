@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: admin
+      changes:
+        - insert:
+            tableName: cart_items
+            columns:
+              - column:
+                  name: shopping_cart_id
+                  valueComputed: "(SELECT id FROM users WHERE email = 'user@devil.com')"
+              - column:
+                  name: book_id
+                  valueComputed: "(SELECT id FROM books WHERE isbn = '1234567891012')"
+              - column:
+                  name: quantity
+                  value: 1
+        - insert:
+            tableName: cart_items
+            columns:
+              - column:
+                  name: shopping_cart_id
+                  valueComputed: "(SELECT id FROM users WHERE email = 'user@devil.com')"
+              - column:
+                  name: book_id
+                  valueComputed: "(SELECT id FROM books WHERE isbn = '1234567891013')"
+              - column:
+                  name: quantity
+                  value: 2

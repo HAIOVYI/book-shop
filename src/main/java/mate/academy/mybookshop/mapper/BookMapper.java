@@ -3,15 +3,16 @@ package mate.academy.mybookshop.mapper;
 import java.util.Set;
 import java.util.stream.Collectors;
 import mate.academy.mybookshop.config.MapperConfig;
-import mate.academy.mybookshop.dto.BookDto;
-import mate.academy.mybookshop.dto.BookDtoWithoutCategoryIds;
-import mate.academy.mybookshop.dto.CreateBookRequestDto;
-import mate.academy.mybookshop.dto.UpdateBookRequestDto;
+import mate.academy.mybookshop.dto.book.BookDto;
+import mate.academy.mybookshop.dto.book.BookDtoWithoutCategoryIds;
+import mate.academy.mybookshop.dto.book.CreateBookRequestDto;
+import mate.academy.mybookshop.dto.book.UpdateBookRequestDto;
 import mate.academy.mybookshop.entity.BookEntity;
 import mate.academy.mybookshop.entity.CategoryEntity;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
 
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
@@ -31,5 +32,12 @@ public interface BookMapper {
                     .collect(Collectors.toSet());
             bookDto.setCategoryIds(categoryIds);
         }
+    }
+
+    @Named("bookFromId")
+    default BookEntity bookFromId(Long id) {
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setId(id);
+        return bookEntity;
     }
 }

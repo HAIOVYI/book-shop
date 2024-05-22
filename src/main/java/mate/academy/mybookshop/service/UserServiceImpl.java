@@ -3,8 +3,8 @@ package mate.academy.mybookshop.service;
 import jakarta.annotation.PostConstruct;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
-import mate.academy.mybookshop.dto.UserRegistrationRequestDto;
-import mate.academy.mybookshop.dto.UserResponseDto;
+import mate.academy.mybookshop.dto.registration.UserRegistrationRequestDto;
+import mate.academy.mybookshop.dto.registration.UserResponseDto;
 import mate.academy.mybookshop.entity.RoleEntity;
 import mate.academy.mybookshop.entity.UserEntity;
 import mate.academy.mybookshop.exception.RegistrationException;
@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final ShoppingCartService shoppingCartService;
 
     private long userRoleId;
 
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Set.of(roleRepository.getReferenceById(userRoleId)));
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         UserEntity savedUser = userRepository.save(user);
+        shoppingCartService.createShoppingCart(savedUser);
         return userMapper.toResponseDto(savedUser);
     }
 }
