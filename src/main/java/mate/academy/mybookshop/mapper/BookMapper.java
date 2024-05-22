@@ -12,7 +12,6 @@ import mate.academy.mybookshop.entity.CategoryEntity;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.Named;
 
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
@@ -32,12 +31,5 @@ public interface BookMapper {
                     .collect(Collectors.toSet());
             bookDto.setCategoryIds(categoryIds);
         }
-    }
-
-    @Named("bookFromId")
-    default BookEntity bookFromId(Long id) {
-        BookEntity bookEntity = new BookEntity();
-        bookEntity.setId(id);
-        return bookEntity;
     }
 }

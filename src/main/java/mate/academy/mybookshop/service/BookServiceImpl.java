@@ -3,6 +3,7 @@ package mate.academy.mybookshop.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import mate.academy.mybookshop.dto.book.BookDto;
 import mate.academy.mybookshop.dto.book.BookDtoWithoutCategoryIds;
@@ -63,8 +64,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDtoWithoutCategoryIds> findAllBooksByCategoryId(Long categoryId) {
-        List<BookEntity> bookEntities = bookRepository.findAllByCategoriesId(categoryId);
+    public List<BookDtoWithoutCategoryIds> findAllBooksByCategoryId(
+            Long categoryId, Pageable pageable) {
+        List<BookEntity> bookEntities = bookRepository.findAllByCategoriesId(categoryId, pageable);
         return bookEntities.stream()
                 .map(bookMapper::toDtoWithoutCategories)
                 .toList();
@@ -72,8 +74,17 @@ public class BookServiceImpl implements BookService {
 
     private void setCategories(BookEntity bookEntity, Set<Long> categoryIds) {
         if (categoryIds != null && !categoryIds.isEmpty()) {
-            Set<CategoryEntity> categories = new HashSet<>(
-                    categoryRepository.findAllById(categoryIds));
+            Set<CategoryEntity> categories =
+                    new HashSet<>(categoryRepository.findAllById(categoryIds));
+            Set<Long> foundCategoryIds = categories.stream()
+                    .map(CategoryEntity::getId)
+                    .collect(Collectors.toSet());
+            categoryIds.forEach(categoryId -> {
+                if (!foundCategoryIds.contains(categoryId)) {
+                    throw new EntityNotFoundException(
+                            "Category with id: " + categoryId + " not found");
+                }
+            });
             bookEntity.setCategories(categories);
         }
     }
