@@ -9,8 +9,6 @@ import mate.academy.mybookshop.dto.cartitem.ShoppingCartResponseDto;
 import mate.academy.mybookshop.dto.cartitem.UpdateCartItemQuantityRequestDto;
 import mate.academy.mybookshop.entity.UserEntity;
 import mate.academy.mybookshop.service.ShoppingCartService;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,18 +29,17 @@ public class ShoppingCartController {
     @GetMapping
     @Operation(summary = "Retrieve user shopping cart")
     public ShoppingCartResponseDto retrieveUserShoppingCart(
-            @AuthenticationPrincipal UserEntity user,
-            @PageableDefault Pageable pageable) {
-        return shoppingCartService.retrieveUserShoppingCart(user, pageable);
+            @AuthenticationPrincipal UserEntity user) {
+        return shoppingCartService.retrieveUserShoppingCart(user);
     }
 
     @PostMapping
     @Operation(summary = "Add items to shopping cart",
             description = "Add items to the shopping cart")
     public ShoppingCartResponseDto addCartItemToShoppingCart(
-            @RequestBody @Valid CreateCartItemRequestDto createCartItemRequestDto,
+            @RequestBody @Valid CreateCartItemRequestDto requestDto,
             @AuthenticationPrincipal UserEntity user) {
-        return shoppingCartService.addCartItemToShoppingCart(createCartItemRequestDto, user);
+        return shoppingCartService.addCartItemToShoppingCart(requestDto, user);
     }
 
     @PutMapping("/cart-items/{id}")
