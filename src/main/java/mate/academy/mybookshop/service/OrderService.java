@@ -17,5 +17,5 @@ public interface OrderService {
 
     OrderItemResponseDto getOrderItem(UserEntity user, Long orderId, Long id);
 
-    void changeStatus(UserEntity user, Long id, UpdateOrderRequestDto requestDto);
+    void changeStatus(Long id, UpdateOrderRequestDto requestDto);
 }
