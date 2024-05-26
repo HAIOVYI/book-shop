@@ -27,12 +27,6 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
-              - column:
-                  name: is_deleted
-                  type: boolean
-                  defaultValueBoolean: false
-                  constraints:
-                    nullable: false
         - addForeignKeyConstraint:
             constraintName: fk_cart_item_shopping_cart
             baseTableName: cart_items
