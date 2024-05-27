@@ -2,10 +2,10 @@ package mate.academy.mybookshop.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import mate.academy.mybookshop.dto.UserLoginRequestDto;
-import mate.academy.mybookshop.dto.UserLoginResponseDto;
-import mate.academy.mybookshop.dto.UserRegistrationRequestDto;
-import mate.academy.mybookshop.dto.UserResponseDto;
+import mate.academy.mybookshop.dto.login.UserLoginRequestDto;
+import mate.academy.mybookshop.dto.login.UserLoginResponseDto;
+import mate.academy.mybookshop.dto.registration.UserRegistrationRequestDto;
+import mate.academy.mybookshop.dto.registration.UserResponseDto;
 import mate.academy.mybookshop.exception.RegistrationException;
 import mate.academy.mybookshop.security.AuthenticationService;
 import mate.academy.mybookshop.service.UserService;

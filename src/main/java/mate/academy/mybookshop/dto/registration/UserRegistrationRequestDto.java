@@ -1,4 +1,4 @@
-package mate.academy.mybookshop.dto;
+package mate.academy.mybookshop.dto.registration;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

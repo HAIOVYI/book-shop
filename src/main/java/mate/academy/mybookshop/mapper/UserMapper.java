@@ -1,8 +1,8 @@
 package mate.academy.mybookshop.mapper;
 
 import mate.academy.mybookshop.config.MapperConfig;
-import mate.academy.mybookshop.dto.UserRegistrationRequestDto;
-import mate.academy.mybookshop.dto.UserResponseDto;
+import mate.academy.mybookshop.dto.registration.UserRegistrationRequestDto;
+import mate.academy.mybookshop.dto.registration.UserResponseDto;
 import mate.academy.mybookshop.entity.UserEntity;
 import org.mapstruct.Mapper;
 

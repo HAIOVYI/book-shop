@@ -1,4 +1,4 @@
-package mate.academy.mybookshop.dto;
+package mate.academy.mybookshop.dto.login;
 
 public record UserLoginResponseDto(String token) {
 }

@@ -3,7 +3,7 @@ package mate.academy.mybookshop.annotation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.util.Objects;
-import mate.academy.mybookshop.dto.UserRegistrationRequestDto;
+import mate.academy.mybookshop.dto.registration.UserRegistrationRequestDto;
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {
 

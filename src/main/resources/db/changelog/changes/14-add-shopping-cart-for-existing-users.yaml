@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: admin
+      changes:
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: (SELECT id FROM users WHERE email = 'admin@god.com')
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: (SELECT id FROM users WHERE email = 'user@devil.com')

@@ -7,11 +7,13 @@ import java.util.Map;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -46,5 +48,19 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             return field + " " + message;
         }
         return e.getDefaultMessage();
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    protected ResponseEntity<Object> handleNotFound(EntityNotFoundException ex) {
+        return getResponseEntity(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    private ResponseEntity<Object> getResponseEntity(HttpStatus status, Object error) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(status);
+        Map<String, Object> detail = new LinkedHashMap<>();
+        detail.put("error", error);
+        detail.put("timestamp", LocalDateTime.now().toString());
+        problemDetail.setProperties(detail);
+        return ResponseEntity.of(problemDetail).build();
     }
 }

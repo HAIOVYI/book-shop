@@ -1,4 +1,4 @@
-package mate.academy.mybookshop.dto;
+package mate.academy.mybookshop.dto.book;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +10,7 @@ import java.util.Set;
 import lombok.Data;
 
 @Data
-public class UpdateBookRequestDto {
+public class CreateBookRequestDto {
     @NotBlank
     @NotNull
     private String title;
@@ -24,6 +24,6 @@ public class UpdateBookRequestDto {
     private BigDecimal price;
     private String description;
     private String coverImage;
-    @NotEmpty
+    @NotEmpty(message = "Categories must not be empty")
     private Set<Long> categoryIds;
 }
