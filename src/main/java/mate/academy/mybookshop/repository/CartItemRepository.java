@@ -11,5 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface CartItemRepository extends JpaRepository<CartItemEntity, Long> {
     Set<CartItemEntity> findCartItemEntitiesByShoppingCartId(Long shoppingCartId);
 
+    void deleteCartItemEntitiesById(Long shoppingCartId);
+
     CartItemEntity findByShoppingCartAndBook(ShoppingCartEntity shoppingCart, BookEntity book);
 }
