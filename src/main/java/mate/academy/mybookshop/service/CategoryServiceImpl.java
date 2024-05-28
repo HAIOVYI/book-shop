@@ -1,12 +1,13 @@
 package mate.academy.mybookshop.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.mybookshop.dto.category.CategoryResponseDto;
 import mate.academy.mybookshop.dto.category.CreateCategoryRequestDto;
 import mate.academy.mybookshop.dto.category.UpdateCategoryRequestDto;
 import mate.academy.mybookshop.entity.CategoryEntity;
+import mate.academy.mybookshop.exception.EmptyCartException;
+import mate.academy.mybookshop.exception.EntityNotFoundException;
 import mate.academy.mybookshop.mapper.CategoryMapper;
 import mate.academy.mybookshop.repository.CategoryRepository;
 import org.springframework.data.domain.Pageable;
@@ -53,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     private void checkExistCategoryById(Long id) {
         categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(
+                .orElseThrow(() -> new EmptyCartException(
                         "Can't find a category by id " + id));
     }
 }
