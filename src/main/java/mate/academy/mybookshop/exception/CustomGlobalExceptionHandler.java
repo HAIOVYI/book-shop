@@ -55,6 +55,12 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return getResponseEntity(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler({RegistrationException.class, EmptyCartException.class})
+    public ResponseEntity<Object> handleDataIntegrityViolationException(
+            Exception ex) {
+        return getResponseEntity(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
     private ResponseEntity<Object> getResponseEntity(HttpStatus status, Object error) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(status);
         Map<String, Object> detail = new LinkedHashMap<>();

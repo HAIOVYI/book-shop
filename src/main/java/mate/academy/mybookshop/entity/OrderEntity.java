@@ -22,6 +22,7 @@ import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -50,7 +51,7 @@ public class OrderEntity {
     @Min(value = 0)
     private BigDecimal total;
 
-    @NotNull
+    @CreationTimestamp
     private LocalDateTime orderDate;
 
     @NotNull
