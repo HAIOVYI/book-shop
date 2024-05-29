@@ -83,6 +83,13 @@ The BookShop app includes the following domain models:
 - **Database migrations**: Implemented using Liquibase for smooth schema updates.
 - **Security**: Integrated Spring Security and JWT for robust authentication and authorization.
 
+
+## API Documentation
+
+You can access the API documentation at:
+
+[Swagger UI](http://localhost:8088/swagger-ui/index.html)
+
 ### User Registration
 ```http
 POST http://localhost:8088/api/auth/registration
