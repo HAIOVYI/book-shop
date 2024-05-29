@@ -49,8 +49,8 @@ The BookShop app includes the following domain models:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/HAIOVYI/book-shop
-    cd my-book-shop
+    git clone git@github.com:HAIOVYI/book-shop.git
+    cd book-shop
     ```
 
 2. **Create a `.env` file in the root directory:**
