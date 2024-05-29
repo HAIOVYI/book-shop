@@ -95,9 +95,9 @@ public class OrderServiceImpl implements OrderService {
     private Set<OrderItemEntity> mapCartItemsToOrderItems(
             OrderEntity order, Set<CartItemEntity> cartItems) {
         Set<OrderItemEntity> orderItems = new HashSet<>();
-        OrderItemEntity orderItem = new OrderItemEntity();
 
         for (CartItemEntity cartItem : cartItems) {
+            OrderItemEntity orderItem = new OrderItemEntity();
             orderItem.setOrder(order);
             orderItem.setBook(cartItem.getBook());
             orderItem.setQuantity(cartItem.getQuantity());

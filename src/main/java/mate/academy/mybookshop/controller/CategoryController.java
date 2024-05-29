@@ -55,7 +55,7 @@ public class CategoryController {
     @Operation(summary = "Update category info",
             description = "Update info about exist category by id")
     public CategoryResponseDto update(@PathVariable Long id,
-                                          @RequestBody @Valid UpdateCategoryRequestDto requestDto) {
+                                      @RequestBody @Valid UpdateCategoryRequestDto requestDto) {
         return categoryService.update(id, requestDto);
     }
 
