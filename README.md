@@ -4,7 +4,7 @@ BookShop is an online store that allows users to browse and purchase books. It s
 
 ## Video Demo
 
-[![Watch the demo video](images/video-thumbnail.png)](https://www.loom.com/share/a914d2d093be4c5f8fbda0196265d8ed)
+[![Watch the demo video](images/video-thumbnail.png)](https://www.loom.com/share/a914d2d093be4c5f8fbda0196265d8ed?sid=53254b16-4466-425e-ad05-5c2ba0367705)
 
 Click the image above to watch the demo video.
 
